@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>Liquidsoap</Name>
+  <Repository>aschamberger/liquidsoap</Repository>
+  <Registry>https://hub.docker.com/r/aschamberger/liquidsoap/~/dockerfile/</Registry>
+  <Network>bridge</Network>
+  <Privileged>false</Privileged>
+  <Support>https://hub.docker.com/r/aschamberger/liquidsoap/</Support>
+  <Overview>http://liquidsoap.info/</Overview>
+  <Category/>
+  <WebUI/>
+  <TemplateURL/>
+  <Icon>https://github.com/Squidly271/community.applications/raw/master/source/community.applications/usr/local/emhttp/plugins/community.applications/images/question.png</Icon>
+  <ExtraParams>--device=/dev/snd/</ExtraParams>
+  <DateInstalled>1516309655</DateInstalled>
+  <Description>http://liquidsoap.info/</Description>
+  <Networking>
+    <Mode>bridge</Mode>
+    <Publish/>
+  </Networking>
+  <Data>
+    <Volume>
+      <HostDir>/mnt/user/appdata/Liquidsoap/</HostDir>
+      <ContainerDir>/config</ContainerDir>
+      <Mode>rw</Mode>
+    </Volume>
+  </Data>
+  <Environment>
+    <Variable>
+      <Value>99</Value>
+      <Name>USER_ID</Name>
+      <Mode/>
+    </Variable>
+    <Variable>
+      <Value>100</Value>
+      <Name>GROUP_ID</Name>
+      <Mode/>
+    </Variable>
+    <Variable>
+      <Value>0000</Value>
+      <Name>UMASK</Name>
+      <Mode/>
+    </Variable>
+  </Environment>
+  <Config Name="User ID" Target="USER_ID" Default="99" Mode="" Description="Container Variable: USER_ID" Type="Variable" Display="always" Required="true" Mask="false">99</Config>
+  <Config Name="Group ID" Target="GROUP_ID" Default="100" Mode="" Description="Container Variable: GROUP_ID" Type="Variable" Display="always" Required="true" Mask="false">100</Config>
+  <Config Name="umask" Target="UMASK" Default="0000" Mode="" Description="Container Variable: UMASK" Type="Variable" Display="always" Required="true" Mask="false">0000</Config>
+  <Config Name="AppData Config Path" Target="/config" Default="/mnt/user/appdata/Liquidsoap/" Mode="rw" Description="Container Path: /config" Type="Path" Display="advanced-hide" Required="true" Mask="false">/mnt/user/appdata/Liquidsoap/</Config>
+</Container>

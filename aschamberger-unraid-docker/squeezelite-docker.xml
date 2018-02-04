@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>Squeezelite</Name>
+  <Repository>aschamberger/squeezelite</Repository>
+  <Registry>https://hub.docker.com/r/aschamberger/squeezelite/~/dockerfile/</Registry>
+  <Network>bridge</Network>
+  <Privileged>false</Privileged>
+  <Support>https://hub.docker.com/r/aschamberger/squeezelite/</Support>
+  <Overview>https://github.com/ralph-irving/squeezelite</Overview>
+  <Category/>
+  <WebUI/>
+  <TemplateURL/>
+  <Icon>https://github.com/Squidly271/community.applications/raw/master/source/community.applications/usr/local/emhttp/plugins/community.applications/images/question.png</Icon>
+  <ExtraParams>--device=/dev/snd/</ExtraParams>
+  <DateInstalled>1516311353</DateInstalled>
+  <Description>https://github.com/ralph-irving/squeezelite</Description>
+  <Networking>
+    <Mode>bridge</Mode>
+    <Publish/>
+  </Networking>
+  <Data>
+    <Volume>
+      <HostDir>/mnt/user/appdata/Squeezelite/</HostDir>
+      <ContainerDir>/config</ContainerDir>
+      <Mode>rw</Mode>
+    </Volume>
+  </Data>
+  <Environment>
+    <Variable>
+      <Value>99</Value>
+      <Name>USER_ID</Name>
+      <Mode/>
+    </Variable>
+    <Variable>
+      <Value>100</Value>
+      <Name>GROUP_ID</Name>
+      <Mode/>
+    </Variable>
+    <Variable>
+      <Value>0000</Value>
+      <Name>UMASK</Name>
+      <Mode/>
+    </Variable>
+    <Variable>
+      <Value>Arbeitszimmer</Value>
+      <Name>PLAYER</Name>
+      <Mode/>
+    </Variable>
+    <Variable>
+      <Value>default:SND_A</Value>
+      <Name>OUTPUT_DEVICE</Name>
+      <Mode/>
+    </Variable>
+    <Variable>
+      <Value>02:00:00:00:00:00</Value>
+      <Name>MAC_ADDRESS</Name>
+      <Mode/>
+    </Variable>
+  </Environment>
+  <Config Name="User ID" Target="USER_ID" Default="99" Mode="" Description="Container Variable: USER_ID" Type="Variable" Display="always" Required="true" Mask="false">99</Config>
+  <Config Name="Group ID" Target="GROUP_ID" Default="100" Mode="" Description="Container Variable: GROUP_ID" Type="Variable" Display="always" Required="true" Mask="false">100</Config>
+  <Config Name="umask" Target="UMASK" Default="0000" Mode="" Description="Container Variable: UMASK" Type="Variable" Display="always" Required="true" Mask="false">0000</Config>
+  <Config Name="Player name" Target="PLAYER" Default="slPlayer" Mode="" Description="Container Variable: PLAYER" Type="Variable" Display="always" Required="true" Mask="false">Arbeitszimmer</Config>
+  <Config Name="Sound card" Target="OUTPUT_DEVICE" Default="default" Mode="" Description="Container Variable: SOUND_DEVICE" Type="Variable" Display="always" Required="true" Mask="false">default:SND_A</Config>
+  <Config Name="Mac address" Target="MAC_ADDRESS" Default="02:00:00:00:00:00" Mode="" Description="Container Variable: MAC_ADDRESS" Type="Variable" Display="always" Required="true" Mask="false">02:00:00:00:00:00</Config>
+  <Config Name="AppData Config Path" Target="/config" Default="/mnt/user/appdata/Squeezelite/" Mode="rw" Description="Container Path: /config" Type="Path" Display="advanced-hide" Required="true" Mask="false">/mnt/user/appdata/Squeezelite/</Config>
+</Container>
