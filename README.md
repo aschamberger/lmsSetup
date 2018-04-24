@@ -15,7 +15,7 @@ and another [USB Sound Card w/ Mic In](https://www.amazon.de/CSL-Externe-Soundka
         mkdir /mnt/cache/appdata/__snd_kernel
         wget https://raw.githubusercontent.com/CHBMB/Unraid-DVB/master/build_scripts/kernel-compile-module.sh -P /mnt/cache/appdata/__snd_kernel
         wget https://raw.githubusercontent.com/CHBMB/Unraid-DVB/master/build_scripts/libreelec-module.sh -P /mnt/cache/appdata/__snd_kernel
-        wget https://mirror.linuxserver.io/unraid-dvb-rc/6-4-0/stock/.config -P /mnt/cache/appdata/__snd_kernel
+        wget https://mirror.linuxserver.io/unraid-dvb/6-5-1/stock/.config -P /mnt/cache/appdata/__snd_kernel
         sed -i "/wget https:\/\/mirror.linuxserver.io\/unraid-dvb-rc\/\$VERSION\/stock\/.config/ s/^/# /" /mnt/cache/appdata/__snd_kernel/kernel-compile-module.sh
         chmod +x /mnt/cache/appdata/__snd_kernel/*.sh
         ```
@@ -23,7 +23,7 @@ and another [USB Sound Card w/ Mic In](https://www.amazon.de/CSL-Externe-Soundka
         1. Change all "# CONFIG_SND_USB* is not set" to "CONFIG_SND_USB*=m"
         1. Also change "CONFIG_SND_BCD2000" to "=m"
         1. Add missing "CONFIG_SND_USB_CAIAQ_INPUT=y"
-        1. Enable "CONFIG_USB_EHCI_TT_NEWSCHED=y" ([fix USB errors](https://community.nxp.com/thread/311657))
+        1. ~~Enable "CONFIG_USB_EHCI_TT_NEWSCHED=y" ([fix USB errors](https://community.nxp.com/thread/311657))~~ already enabled in unRAID 6.5
     1. Run build scripts:
         ```
         cd /mnt/cache/appdata/__snd_kernel/
@@ -32,12 +32,14 @@ and another [USB Sound Card w/ Mic In](https://www.amazon.de/CSL-Externe-Soundka
         ```
     1. Install:
         ```
-        cd /mnt/cache/appdata/__snd_kernel/6-4-0/libreelec
+		cp /boot/bz* /boot/old 
+        cd /mnt/cache/appdata/__snd_kernel/6-5-1/libreelec
         cp bzimage /boot/bzimage
         cp bzroot /boot/bzroot
         cp bzroot-gui /boot/bzroot-gui
         cp bzmodules /boot/bzmodules
         cp bzfirmware /boot/bzfirmware
+        cp unraid-media /boot/unraid-media
         ```
     1. Reboot:
         ```
