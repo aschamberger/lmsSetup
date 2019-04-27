@@ -9,37 +9,31 @@ and another [USB Sound Card w/ Mic In](https://www.amazon.de/CSL-Externe-Soundka
 ## Installation / Configuration
 
 1. Compile Kernel with USB Sound support ([based on DVB build](https://github.com/CHBMB/Unraid-DVB/)):
-    1. Download build scripts and adapt (comment *.config* download line [#44]):
+    1. Download build script:
         ```
         rm -r /mnt/cache/appdata/__snd_kernel
         mkdir /mnt/cache/appdata/__snd_kernel
         wget https://raw.githubusercontent.com/CHBMB/Unraid-DVB/master/build_scripts/kernel-compile-module.sh -P /mnt/cache/appdata/__snd_kernel
-        wget https://raw.githubusercontent.com/CHBMB/Unraid-DVB/master/build_scripts/libreelec-module.sh -P /mnt/cache/appdata/__snd_kernel
-        wget https://mirror.linuxserver.io/unraid-dvb/6-5-1/stock/.config -P /mnt/cache/appdata/__snd_kernel
-        sed -i "/wget https:\/\/mirror.linuxserver.io\/unraid-dvb-rc\/\$VERSION\/stock\/.config/ s/^/# /" /mnt/cache/appdata/__snd_kernel/kernel-compile-module.sh
         chmod +x /mnt/cache/appdata/__snd_kernel/*.sh
         ```
     1. Activate USB sound in *.config*:
-        1. Change all "# CONFIG_SND_USB* is not set" to "CONFIG_SND_USB*=m"
-        1. Also change "CONFIG_SND_BCD2000" to "=m"
-        1. Add missing "CONFIG_SND_USB_CAIAQ_INPUT=y"
-        1. ~~Enable "CONFIG_USB_EHCI_TT_NEWSCHED=y" ([fix USB errors](https://community.nxp.com/thread/311657))~~ already enabled in unRAID 6.5
+        ```
+        wget https://lsio.ams3.digitaloceanspaces.com/unraid-dvb/6-6-7/stock/.config -P /mnt/cache/appdata/__snd_kernel
+		sed -i -r 's/# (CONFIG_SND_USB.+) is not set/\1=m/' /mnt/cache/appdata/__snd_kernel/.config
+		sed -i -r 's/# (CONFIG_SND_BCD2000) is not set/\1=m/' /mnt/cache/appdata/__snd_kernel/.config
+		sed -i '/^CONFIG_SND_USB_CAIAQ=m/a CONFIG_SND_USB_CAIAQ_INPUT=y' /mnt/cache/appdata/__snd_kernel/.config
+        ```
     1. Run build scripts:
         ```
         cd /mnt/cache/appdata/__snd_kernel/
         kernel-compile-module.sh
-        libreelec-module.sh
         ```
     1. Install:
         ```
-		cp /boot/bz* /boot/old 
-        cd /mnt/cache/appdata/__snd_kernel/6-5-1/libreelec
-        cp bzimage /boot/bzimage
-        cp bzroot /boot/bzroot
-        cp bzroot-gui /boot/bzroot-gui
-        cp bzmodules /boot/bzmodules
-        cp bzfirmware /boot/bzfirmware
-        cp unraid-media /boot/unraid-media
+        cd /mnt/cache/appdata/__snd_kernel/6-6-7/stock
+        cp bzimage-new /boot/bzimage
+        cp bzmodules-new /boot/bzmodules
+        cp bzfirmware-new /boot/bzfirmware
         ```
     1. Reboot:
         ```
