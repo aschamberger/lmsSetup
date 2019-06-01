@@ -18,10 +18,10 @@ and another [USB Sound Card w/ Mic In](https://www.amazon.de/CSL-Externe-Soundka
         ```
     1. Activate USB sound in *.config*:
         ```
-        wget https://lsio.ams3.digitaloceanspaces.com/unraid-dvb/6-6-7/stock/.config -P /mnt/cache/appdata/__snd_kernel
-		sed -i -r 's/# (CONFIG_SND_USB.+) is not set/\1=m/' /mnt/cache/appdata/__snd_kernel/.config
-		sed -i -r 's/# (CONFIG_SND_BCD2000) is not set/\1=m/' /mnt/cache/appdata/__snd_kernel/.config
-		sed -i '/^CONFIG_SND_USB_CAIAQ=m/a CONFIG_SND_USB_CAIAQ_INPUT=y' /mnt/cache/appdata/__snd_kernel/.config
+        wget https://lsio.ams3.digitaloceanspaces.com/unraid-dvb/6-7-0/stock/.config -P /mnt/cache/appdata/__snd_kernel
+        sed -i -r 's/# (CONFIG_SND_USB.+) is not set/\1=m/' /mnt/cache/appdata/__snd_kernel/.config
+	sed -i -r 's/# (CONFIG_SND_BCD2000) is not set/\1=m/' /mnt/cache/appdata/__snd_kernel/.config
+	sed -i '/^CONFIG_SND_USB_CAIAQ=m/a CONFIG_SND_USB_CAIAQ_INPUT=y' /mnt/cache/appdata/__snd_kernel/.config
         ```
     1. Run build scripts:
         ```
@@ -30,7 +30,7 @@ and another [USB Sound Card w/ Mic In](https://www.amazon.de/CSL-Externe-Soundka
         ```
     1. Install:
         ```
-        cd /mnt/cache/appdata/__snd_kernel/6-6-7/stock
+        cd /mnt/cache/appdata/__snd_kernel/6-7-0/stock
         cp bzimage-new /boot/bzimage
         cp bzmodules-new /boot/bzmodules
         cp bzfirmware-new /boot/bzfirmware
