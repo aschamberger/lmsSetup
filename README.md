@@ -14,7 +14,12 @@ and another [USB Sound Card w/ Mic In](https://www.amazon.de/CSL-Externe-Soundka
         rm -r /mnt/cache/appdata/__snd_kernel
         mkdir /mnt/cache/appdata/__snd_kernel
         wget https://raw.githubusercontent.com/linuxserver/Unraid-DVB/master/build_scripts/kernel-compile-module.sh -P /mnt/cache/appdata/__snd_kernel
-        chmod +x /mnt/cache/appdata/__snd_kernel/*.sh
+        sed -i '76,78{s/^/#/}' /mnt/cache/appdata/__snd_kernel/kernel-compile-module.sh
+        sed -i '80,83{s/^/#/}' /mnt/cache/appdata/__snd_kernel/kernel-compile-module.sh
+        wget -nc https://raw.githubusercontent.com/linuxserver/Unraid-Dependencies/master/build_scripts/variables.sh -P /mnt/cache/appdata/__snd_kernel
+        wget -nc https://raw.githubusercontent.com/linuxserver/Unraid-Dependencies/master/build_scripts/dvb-variables.sh -P /mnt/cache/appdata/__snd_kernel
+        #sed -i 's/TEHUTI="0.3.6.17.1"/TEHUTI="0.3.6.17.2"/g' # version in config was not available anymore
+        chmod +x /mnt/cache/appdata/__snd_kernel/kernel-compile-module.sh
         ```
     1. Activate USB sound in *.config*:
         ```
