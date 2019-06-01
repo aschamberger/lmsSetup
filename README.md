@@ -8,20 +8,20 @@ and another [USB Sound Card w/ Mic In](https://www.amazon.de/CSL-Externe-Soundka
 
 ## Installation / Configuration
 
-1. Compile Kernel with USB Sound support ([based on DVB build](https://github.com/CHBMB/Unraid-DVB/)):
+1. Compile Kernel with USB Sound support ([based on DVB build](https://github.com/linuxserver/Unraid-DVB/)):
     1. Download build script:
         ```
         rm -r /mnt/cache/appdata/__snd_kernel
         mkdir /mnt/cache/appdata/__snd_kernel
-        wget https://raw.githubusercontent.com/CHBMB/Unraid-DVB/master/build_scripts/kernel-compile-module.sh -P /mnt/cache/appdata/__snd_kernel
+        wget https://raw.githubusercontent.com/linuxserver/Unraid-DVB/master/build_scripts/kernel-compile-module.sh -P /mnt/cache/appdata/__snd_kernel
         chmod +x /mnt/cache/appdata/__snd_kernel/*.sh
         ```
     1. Activate USB sound in *.config*:
         ```
         wget https://lsio.ams3.digitaloceanspaces.com/unraid-dvb/6-7-0/stock/.config -P /mnt/cache/appdata/__snd_kernel
         sed -i -r 's/# (CONFIG_SND_USB.+) is not set/\1=m/' /mnt/cache/appdata/__snd_kernel/.config
-	sed -i -r 's/# (CONFIG_SND_BCD2000) is not set/\1=m/' /mnt/cache/appdata/__snd_kernel/.config
-	sed -i '/^CONFIG_SND_USB_CAIAQ=m/a CONFIG_SND_USB_CAIAQ_INPUT=y' /mnt/cache/appdata/__snd_kernel/.config
+        sed -i -r 's/# (CONFIG_SND_BCD2000) is not set/\1=m/' /mnt/cache/appdata/__snd_kernel/.config
+        sed -i '/^CONFIG_SND_USB_CAIAQ=m/a CONFIG_SND_USB_CAIAQ_INPUT=y' /mnt/cache/appdata/__snd_kernel/.config
         ```
     1. Run build scripts:
         ```
